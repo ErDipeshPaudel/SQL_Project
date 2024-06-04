@@ -1,0 +1,34 @@
+In this basic journey we will be working with below SQL dataset about different job posting facts of Data industry.
+You can open this data set by visiting this link below. Also this 4 hour long course is available free on the Youtube.
+https://lukeb.co/sql_jobs_db
+
+Basics SQL commands:
+In basics we will be working with below commands
+SELECT
+FROM
+WHERE
+GROUP BY
+HAVING
+ORDER BY
+LIMIT
+
+Some other basics commands are 
+DISTINCT
+NOT EQUAL TO
+LIKE
+NOT LIKE
+AS
+
+Operators
+Arthematic Operators ( + - * %)
+Comparision Operators (  = <> > < >= <=)
+Logical Operators ( AND OR BETWEEN IN NOT)
+
+Aggregation Functions
+SUM()
+COUNT()
+AVG()
+MAX()
+MIN()
+
+Comments are written within (--) and /* */
