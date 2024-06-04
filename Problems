@@ -1,1 +1,14 @@
 Here are the problems that we will be solving using SQL commands.
+
+Q. Group the job by title and count number of jobs, their minimim, maximum and average salary
+and display them in order with maximum job counts.
+
+SELECT job_title_short AS jobs,
+	COUNT(job_title_short) AS job_count,
+	AVG(salary_year_avg) as average_salary,
+  MIN(salary_year_avg) as minimum_salary,
+  MAX(salary_year_avg) as maximum_salary
+FROM job_postings_fact
+GROUP BY jobs
+HAVING job_count > 100
+ORDER BY job_count DESC
