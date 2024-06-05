@@ -1,0 +1,7 @@
+This dataset is available in below link:
+lukeb.co/sql_invoices_db
+
+Q1. Display total earning of a person using hours_spent and hours_rate of salary paid
+Ans.
+SELECT project_id, hours_spent, hours_rate AS rate_original, hours_rate + 5 AS rate_hike, hours_spent * hours_rate AS total_earning
+FROM invoices_fact
