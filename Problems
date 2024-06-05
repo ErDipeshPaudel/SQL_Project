@@ -12,3 +12,9 @@ FROM job_postings_fact
 GROUP BY jobs
 HAVING job_count > 100
 ORDER BY job_count DESC
+
+Q2. Count total jobs which provides health insurance in the column job_health_insurance
+Ans.
+SELECT job_health_insurance AS insurance
+FROM job_postings_fact
+WHERE insurance = TRUE
