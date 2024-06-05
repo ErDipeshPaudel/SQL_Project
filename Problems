@@ -6,8 +6,8 @@ Ans.
 SELECT job_title_short AS jobs,
 	COUNT(job_title_short) AS job_count,
 	AVG(salary_year_avg) as average_salary,
-  MIN(salary_year_avg) as minimum_salary,
-  MAX(salary_year_avg) as maximum_salary
+ 	MIN(salary_year_avg) as minimum_salary,
+	MAX(salary_year_avg) as maximum_salary
 FROM job_postings_fact
 GROUP BY jobs
 HAVING job_count > 100
