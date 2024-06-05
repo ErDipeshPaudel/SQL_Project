@@ -3,5 +3,10 @@ lukeb.co/sql_invoices_db
 
 Q1. Display total earning of a person using hours_spent and hours_rate of salary paid
 Ans.
-SELECT project_id, hours_spent, hours_rate AS rate_original, hours_rate + 5 AS rate_hike, hours_spent * hours_rate AS total_earning
+SELECT project_id,
+  hours_spent, hours_rate AS rate_original,
+  hours_rate + 5 AS rate_hike,
+  hours_spent * hours_rate AS total_earning,
+  SUM(hours_spent * hours_rate) AS total_projected_cost
 FROM invoices_fact
+GROUP BY project_id
