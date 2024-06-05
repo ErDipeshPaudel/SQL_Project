@@ -15,6 +15,11 @@ ORDER BY job_count DESC
 
 Q2. Count total jobs which provides health insurance in the column job_health_insurance
 Ans.
-SELECT job_health_insurance AS insurance
+SELECT COUNT(job_health_insurance) as insurance_count
 FROM job_postings_fact
-WHERE insurance = TRUE
+WHERE job_health_insurance = TRUE
+
+Q3. Count total jobs available in each country from column job_country
+SELECT job_country, COUNT(job_title_short) as jobs_count
+FROM job_postings_fact
+GROUP BY job_country
