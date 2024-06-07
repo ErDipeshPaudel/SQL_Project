@@ -32,3 +32,8 @@ MAX()
 MIN()
 
 Comments are written within (--) and /* */
+
+JOINS
+LEFT JOIN
+RIGHT JOIN
+INNER JOIN
