@@ -33,3 +33,13 @@ Ans
 SELECT job_posting.company_id, job_posting.job_title, job_location, companies.company_id, companies.name
 FROM job_postings_fact AS job_posting
 LEFT JOIN company_dim AS companies ON job_posting.company_id = companies.company_id
+
+RIGHT JOINS
+Q3. Lets do Right join in same above example and try to understand
+Ans
+SELECT job_posting.company_id, job_posting.job_title, job_location, companies.company_id, companies.name
+FROM job_postings_fact AS job_posting
+RIGHT JOIN company_dim AS companies ON job_posting.company_id = companies.company_id
+Note: Usage, for example if right table companies_dim had more company_id than  left table then in final result
+there will be all company_id table from right table
+
