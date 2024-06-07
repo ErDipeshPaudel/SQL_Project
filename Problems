@@ -25,7 +25,7 @@ FROM job_postings_fact
 GROUP BY job_country
 
 JOINS
-LEFT JOINS
+LEFT JOIN
 Q3. We have one table named job_posting_facts and another table company_dim, where both of the table
 have company_id column, now use left join and return company_id and job_title from left table and company_id
 and name from right table
@@ -34,8 +34,8 @@ SELECT job_posting.company_id, job_posting.job_title, job_location, companies.co
 FROM job_postings_fact AS job_posting
 LEFT JOIN company_dim AS companies ON job_posting.company_id = companies.company_id
 
-RIGHT JOINS
-Q3. Lets do Right join in same above example and try to understand
+RIGHT JOIN
+Q4. Lets do Right join in same above example and try to understand
 Ans
 SELECT job_posting.company_id, job_posting.job_title, job_location, companies.company_id, companies.name
 FROM job_postings_fact AS job_posting
@@ -43,3 +43,51 @@ RIGHT JOIN company_dim AS companies ON job_posting.company_id = companies.compan
 Note: Usage, for example if right table companies_dim had more company_id than  left table then in final result
 there will be all company_id table from right table
 
+INNER JOIN
+Returns intersection or common data between two tables
+Q5. We have following tables,
+	table A and B have company_id in common,
+	table A and D have job_id in common,
+	table C and D have skills_id in common
+A*Jobs Fact Table with columns 
+	job_id
+	company_id
+	job_title_short
+	job_title
+	job_location
+	job_via
+	job_schedule_type
+	job_work_from_home
+	search_location
+	job_posted_date
+	job_no_degree_mention
+	job_health_insurance
+	job_country
+	salary_rate
+	salary_year_avg
+	salary_hour_avg
+B*Company Dim Table with columns
+	company_id
+	name
+	link
+	link_google
+	thumbnail
+C*Skills Dim Table with columns 
+	skill_id
+	skills
+	type
+D*Skill-Job Dim Table with columns
+       	job_id
+	skill_id
+
+Now return job_id, job_title form table A skill_id from from table D and skills from table C
+
+Ans.
+SELECT 
+	job_postings.job_id, 
+	job_postings.job_title,
+	skills_to_job.skill_id,
+   	 skills.skills
+FROM job_postings_fact AS job_postings
+INNER JOIN skills_job_dim AS skills_to_job ON job_postings.job_id = skills_to_job.job_id
+INNER JOIN skills_dim AS skills ON skills_to_job.skill_id = skills.skill_id
