@@ -23,3 +23,13 @@ Q3. Count total jobs available in each country from column job_country
 SELECT job_country, COUNT(job_title_short) as jobs_count
 FROM job_postings_fact
 GROUP BY job_country
+
+JOINS
+LEFT JOINS
+Q3. We have one table named job_posting_facts and another table company_dim, where both of the table
+have company_id column, now use left join and return company_id and job_title from left table and company_id
+and name from right table
+Ans
+SELECT job_posting.company_id, job_posting.job_title, job_location, companies.company_id, companies.name
+FROM job_postings_fact AS job_posting
+LEFT JOIN company_dim AS companies ON job_posting.company_id = companies.company_id
