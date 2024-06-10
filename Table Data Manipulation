@@ -1,1 +1,67 @@
-Here we will learn how to CREATE TABLE, UPDATE TABLE,  INSERT DATA INTO TABLE, DELETE TABLE:
+Some of the table data manipulation are:
+CREATE TABLE =  to create a new table
+INSERT INTO  = to insert data into the table you created
+ALTER TABLE  ( ADD, RENAME COLUMN, ALTER COLUMN, DROP COLUMN)
+DROP TABLE   = to delete table
+
+
+1. CREATE TABLE:
+Syntax
+CREATE TABLE table_name( column_name datatype )
+For Example:
+
+CREATE TABLE job_applied (
+    job_id INT,
+    application_sent_date DATE,
+    custom_resume BOOLEAN,
+    resume_file_name VARCHAR(255),
+    cover_letter_sent BOOLEAN,
+    cover_letter_file_name VARCHAR(255),
+    status VARCHAR(50)
+);
+
+Now you can check the table you created on Schemas > Public > Tables
+
+2. INSERT INTO:
+Syntax
+INSERT INTO table_name (column1_name, column2_name...)
+VALUES (value1, value2...)
+For Example:
+
+INSERT INTO job_applied
+    (job_id,
+    application_sent_date ,
+    custom_resume ,
+    resume_file_name ,
+    cover_letter_sent ,
+    cover_letter_file_name ,
+    status)
+VALUES (1,
+    '2023-11-26',
+     true,
+    'resume1.pdf', 
+    true, 
+    'cv.pdf', 
+    'submitted'),
+    (2,
+    '2022-1-6',
+    false,
+    'resume2.pdf', 
+    NULL, 
+    'cv1.pdf', 
+    'inverview scheduled'),
+    (3,
+    '2021-11-6',
+    true,
+    'resume1.pdf', 
+    false, 
+    'cv3.pdf', 
+    'ghosted');
+
+Now select the above INSERT INTO command and run using ctrl+E then data is filled into the table
+you can watch the data  by running below command
+
+SELECT *
+FROM job_applied;
+
+
