@@ -37,3 +37,14 @@ JOINS
 LEFT JOIN
 RIGHT JOIN
 INNER JOIN
+
+SQL Data Types
+INT
+VARCHAR = n length variable with specific maximum length
+BOOLEAN
+DATE = yyyy-mm-dd 
+TIMESTAMP = yyyy-mm-dd hh:mm:ss
+NUMERIC = (precision, scale) used for decimal number
+TEXT = unlimited text
+TIMESTAMP WITH TIME ZONE
+
