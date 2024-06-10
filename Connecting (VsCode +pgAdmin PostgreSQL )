@@ -7,9 +7,9 @@ Steps:
 6. > Test connection > Enter password (Successfully connected) > Save connection
 
 Note: We do not use postgres database which ia already present there because it contains core database configuration
-Now we create our new database onit
+Now we create our new database on it
 
-Folow folowing steps to create our database:
+Follow folowing steps to create our database:
 1. Click 'Postgres database' in VsCode
 2. Write SQL command with your database name example. CREATE DATABASE  sql_dipesh
 3. Click "Run on active connection" or use shortcut double press "Ctrl + E"
