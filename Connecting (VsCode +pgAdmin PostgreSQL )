@@ -1,0 +1,49 @@
+Steps:
+1. Open postgres SQL and enter your password
+2. Open your folder in VsCode and create  test.sql file
+3. Make sure to add extension (SQLTools and SQLTools PostgresSQL/Cockroach Driver)
+4. > SQLTools icon in Vscode > Add new connection > postgreSQL
+5. Fill connection name = database = username = "postgres"
+6. > Test connection > Enter password (Successfully connected) > Save connection
+
+Note: We do not use postgres database which ia already present there because it contains core database configuration
+Now we create our new database onit
+
+Folow folowing steps to create our database:
+1. Click 'Postgres database' in VsCode
+2. Write SQL command with your database name example. CREATE DATABASE  sql_dipesh
+3. Click "Run on active connection" or use shortcut double press "Ctrl + E"
+4. Goto pgAdmin and refresh postgres
+5. Now you can see the database created in VsCode "sql_dipesh"  in pgAdmin database
+6. Click on "sql_dipesh" your newly created database and it starts running 
+
+Note: Now we create new connection with our databse we just created
+
+Follow steps below for creating new connection
+1. Click "Add new connection" on VsCode
+2. Select postgreSQL
+3. Fill connection name = database = "sql_dipesh" and  username = "postgres"
+4. Test connection > Allow > Password > Save Connection 
+5. Click on sql_dipesh database
+
+Now our setup is done connecting
+Click on "New SQL File"  this is where we write our SQL commands and perform CRUD operation
+For example we write below commands to create our table:
+CREATE TABLE job_applied (
+    job_id INT,
+    application_sent_date DATE,
+    custom_resume BOOLEAN,
+    resume_file_name VARCHAR(255),
+    cover_letter_sent BOOLEAN,
+    cover_letter_file_name VARCHAR(255),
+    status VARCHAR(50)
+);
+After running this command you can check your new table in sql_dipesh > Schemas > public > Tables > "Here it shows your table columns"
+
+Next: Head to file name "SQL Table Data Manupulation"
+
+
+
+
+
+
