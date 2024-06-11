@@ -5,11 +5,11 @@ ALTER TABLE  ( ADD, RENAME COLUMN, ALTER COLUMN, DROP COLUMN)
 DROP TABLE   = to delete table
 
 
-1. CREATE TABLE:
+1. *****************************************************    CREATE TABLE  ****************************
 Syntax
 CREATE TABLE table_name( column_name datatype )
-For Example:
 
+Q1. Create a table named job_applied and add relevant column and data
 CREATE TABLE job_applied (
     job_id INT,
     application_sent_date DATE,
@@ -22,12 +22,12 @@ CREATE TABLE job_applied (
 
 Now you can check the table you created on Schemas > Public > Tables
 
-2. INSERT INTO:
+2.********************************************************    INSERT INTO  ****************************
 Syntax
 INSERT INTO table_name (column1_name, column2_name...)
 VALUES (value1, value2...)
-For Example:
 
+Q2. Fill the data into table
 INSERT INTO job_applied
     (job_id,
     application_sent_date ,
@@ -64,4 +64,49 @@ you can watch the data  by running below command
 SELECT *
 FROM job_applied;
 
+3. ************************************************************    ALTER TABLE  ****************************
+This command is used to add, delete or update the table content both column name and data
+Syntax:
 
+ALTER TABLE table_name
+ADD column_name datatype;                 (to add new column in table)
+RENAME COLUMN column_name TO new_name;    (to rename column name)
+ALTER COLUMN column_name TYPE datatype;   (to change datatype of column)
+DROP Column column_name                   (to delete column)
+
+Q3. Create new column name "contact" in job_applied table
+Ans.
+ALTER TABLE job_applied
+ADD contact VARCHAR(50);
+
+Q4. Rename this column 'contact' to 'contact_name'
+Ans.
+ALTER TABLE job_applied
+RENAME COLUMN contact TO  contact_name;
+
+Q5. Update the values into the 'contact_name'
+Ans.
+UPDATE job_applied
+SET contact = 'Diwash'
+WHERE job_id = 1;
+
+UPDATE job_applied
+SET contact = 'Dibya'
+WHERE job_id = 2;
+
+UPDATE job_applied
+SET contact = 'Apekshya'
+WHERE job_id = 3;
+
+Q6. Change the datatype of 'contact_name' to TEXT
+Ans.
+ALTER TABLE job_applied
+ALTER COLUMN contact_name TYPE TEXT;
+
+Q7. Delete the column
+Ans.
+ALTER TABLE job_applied
+DROP COLUMN contact_name;
+
+*********************************************************DELETE THE TABLE******************************************************
+DROP TABLE job_applied;
