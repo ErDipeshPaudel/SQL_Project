@@ -5,6 +5,7 @@ In this basic journey we will be working with below SQL dataset about different 
 
 At first you can open this data set by visiting this link below.  will be using browser for basic understanding using "sqliteviz" online on browser
 https://lukeb.co/sql_jobs_db
+
 https://sqliteviz.com/app/#/workspace?hide_schema=1
 
 Later on we will connect pgAdmin postgreSQL with VsCode Editor and work with below dataset creating our own database
