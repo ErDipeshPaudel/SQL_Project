@@ -13,32 +13,31 @@ Downloading CSV dataset from link below and copying it to our database in the SQ
 https://drive.google.com/drive/folders/1moeWYoUtUklJO6NJdWo9OV8zWjRn0rjN
 
 Basics SQL commands:
-In basics we will be working with below commands
-SELECT
-FROM
-WHERE
-GROUP BY
-HAVING
-ORDER BY
-LIMIT
+SELECT, FROM, WHERE, GROUP BY, HAVING, ORDER BY, LIMIT
 
-Some other basics commands are 
-DISTINCT
-NOT EQUAL TO
-LIKE
-NOT LIKE
-AS
+Datatypes are: INT, VARCHAR, BOOLEAN, TIMESTAMP, NUMERIC, TEXT, DATA, TIMESTAMP WITH TIME ZONE
 
-Operators
+Some other basics commands are: DISTINCT, NOT EQUAL TO, LIKE, NOT LIKE, AS
+
+Operators:
 Arthematic Operators ( + - * %)
+
 Comparision Operators (  = <> > < >= <=)
+
 Logical Operators ( AND OR BETWEEN IN NOT)
 
-Aggregation Functions
-SUM()
-COUNT()
-AVG()
-MAX()
-MIN()
+Data Manupulation using: CREATE TABLE, INSERT INTO, ALTER TABLE (ADD, RENAME COLUMN, ALTER COLUMN, DROP COLUMN), DROP TABLE
+
+Aggregation Functions:
+SUM(),
+COUNT(),
+AVG(),
+MAX(),
+MIN(),
+
+We will work with JOINS: LEFT JOIN, RIGHT JOIN, INNER JOIN
 
 Comments are written within (--) and /* */
+
+
+Then connect PostgreSQL with VS Code and create database form zero.
