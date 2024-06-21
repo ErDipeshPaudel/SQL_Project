@@ -52,3 +52,10 @@ Working with Date Time Function
 ::DATE  =  converts datatype to Date
 AT TIME ZONE = It comverts timestamps between different time zones
 EXTRACT = to extract month, year, day from date
+
+CASE EXPRESSIONS
+CASE = begins expression
+WHEN = condition
+THEN = what to do after condition is TRUE
+ELSE = what to do after condition is FALSE
+END = end the CASE expression
