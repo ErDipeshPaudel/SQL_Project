@@ -11,6 +11,38 @@ Example:
 SELECT job_title_short AS title, job_posted_date AS date, job_posted_date :: DATE as date_of_job
 FROM job_postings_fact
 
+SELECT 
+    job_title_short,
+    job_posted_date AS date,
+    job_posted_date :: DATE AS date_of_job,
+    job_posted_date AT TIME ZONE 'UTC' AT TIME ZONE 'EST' AS time_at,
+    EXTRACT (YEAR FROM job_posted_date) AS year,
+    EXTRACT (MONTH FROM job_posted_date) AS month
+FROM job_postings_fact
+LIMIT 5;
+
+-- Display how "Data Anlayst" job positngs are terending month to month in ascending order
+-- also show the total number of jobs in each month
+SELECT
+    COUNT(job_id) As job_number,
+    EXTRACT(MONTH from job_posted_date) AS month
+FROM job_postings_fact
+WHERE job_title_short = 'Data Analyst'
+GROUP BY month
+ORDER BY job_number DESC;
+
+-- Write a query to find average yearly and hourly salary for jobs that were posted after July 1, 2023 and group it by job job schedule type
+SELECT
+    job_schedule_type,
+    AVG(salary_year_avg) AS avg_annual_salary,
+    AVG(salary_hour_avg) AS avg_hourly_salary,
+    EXTRACT(YEAR from job_posted_date) AS year
+FROM job_postings_fact
+WHERE job_posted_date > '2023-06-01'
+GROUP BY year, job_schedule_type
+ORDER BY avg_annual_salary DESC;
+
+
 *************************************************************  AT TIME ZONE   ************************************************************  
 It converts timestamps between different time zones
 SELECT column_name AT TIME ZONE 'KTM'
@@ -22,6 +54,16 @@ SELECT job_posted_date AS original_utc_time,
         job_posted_date AT TIME ZONE 'UTC' AT TIME ZONE 'EST' AS EST_date_time
 FROM job_postings_fact
 LIMIT 5;
+
+-- write a query to count the number of job postings for each month in 2023, adjusting the job_posted_date to be in "America,New_York' time zone before extraction (hint) the month, Assume the job_posted_date is stored in UTC. Group by and order by the month
+SELECT
+    EXTRACT(MONTH FROM (job_posted_date AT TIME ZONE 'UTC' AT TIME ZONE 'America/New_York')) AS month,
+    EXTRACT(YEAR FROM (job_posted_date AT TIME ZONE 'UTC' AT TIME ZONE 'America/New_York')) AS year,
+    COUNT(job_id) AS total_job_number
+FROM job_postings_fact
+WHERE EXTRACT(YEAR FROM (job_posted_date AT TIME ZONE 'UTC' AT TIME ZONE 'America/New_York')) = 2023
+GROUP BY year, month
+ORDER BY year, month ASC;
 
 *************************************************************  EXTRACT    ************************************************************  
 
@@ -35,5 +77,32 @@ SELECT COUNT(job_id), EXTRACT(MONTH FROM job_posted_date) AS month
 FROM job_postings_fact
 GROUP BY month
 
-*************************************************************  ::DATE    ************************************************************  
+--Write to query to find companies (include company name) that posted jobs offering health insurance where these postings were made in the second quarter of the year 2023 use date extraction to filter by quarter
+SELECT
+    job_title_short,
+    job_via,
+    job_health_insurance,
+    EXTRACT (MONTH FROM job_posted_date) AS month,
+    EXTRACT (YEAR FROM job_posted_date) AS year
+
+FROM job_postings_fact
+WHERE (EXTRACT (MONTH FROM job_posted_date)  BETWEEN 4 AND 6) AND job_health_insurance = 'TRUE'
+LIMIT 20;
+*************************************************************  practive problem   ************************************************************  
+
+--Create new table using existing table of job_posting_facts for jobs posted in jan, feb and march
+CREATE TABLE jan_jobs AS
+    SELECT *
+    FROM job_postings_fact
+    WHERE EXTRACT(MONTH FROM job_posted_date) = 1;
+
+CREATE TABLE feb_jobs AS
+    SELECT *
+    FROM job_postings_fact
+    WHERE EXTRACT(MONTH FROM job_posted_date) = 2;
+
+CREATE TABLE mar_jobs AS
+    SELECT *
+    FROM job_postings_fact
+    WHERE EXTRACT(MONTH FROM job_posted_date) = 3;
 
