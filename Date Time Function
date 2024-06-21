@@ -1,0 +1,39 @@
+In our table job_postings_fact we have column name job_posted_date which has yyy-mm-dd hh:mm:ss  date time
+
+*************************************************************  ::DATE    ************************************************************  
+::DATE = We can change datatype fo column from "timestamp" to "DATE"
+
+Syntax
+SELECT timestamp_column::DATE AS date_column
+FROM table_name
+
+Example:
+SELECT job_title_short AS title, job_posted_date AS date, job_posted_date :: DATE as date_of_job
+FROM job_postings_fact
+
+*************************************************************  AT TIME ZONE   ************************************************************  
+It converts timestamps between different time zones
+SELECT column_name AT TIME ZONE 'KTM'
+FROM table_name
+
+Q. Convert the time we already have in UTC to EST time location and display
+Ans. 
+SELECT job_posted_date AS original_utc_time,
+        job_posted_date AT TIME ZONE 'UTC' AT TIME ZONE 'EST' AS EST_date_time
+FROM job_postings_fact
+LIMIT 5;
+
+*************************************************************  EXTRACT    ************************************************************  
+
+EXTRACT is used to extract day, month, year form datetime value
+Syntax,
+SELECT EXTRACT (MONTH FROM column_name) AS month_name
+FROM table_name
+
+Q. How job_postings are trending month to month display them
+SELECT COUNT(job_id), EXTRACT(MONTH FROM job_posted_date) AS month
+FROM job_postings_fact
+GROUP BY month
+
+*************************************************************  ::DATE    ************************************************************  
+
