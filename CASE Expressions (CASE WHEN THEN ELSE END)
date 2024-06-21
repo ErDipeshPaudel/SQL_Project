@@ -1,1 +1,41 @@
+CASE EXPRESSIONS
+CASE = begins expression
+WHEN = condition
+THEN = what to do after condition is TRUE
+ELSE = what to do after condition is FALSE
+END = end the CASE expression
 
+SYNTAX:
+SELECT CASE
+  WHEN column_name = 'Value1' THEN 'Describe Value1'
+  WHEN column_name = 'Value1' THEN 'Describe Value1'
+  ELSE 'other'
+END AS column.description
+FROM table_name;
+
+Q1. categorize the salaries form eacch job posting. To see if it fits in my desired salary range. Put salary into different buckets, define what's high, standard, or low salary with own conditions, Show only data analysts roles and order from highest to lowest
+SELECT 
+    salary_year_avg, 
+    job_title_short,
+    CASE 
+       WHEN salary_year_avg > 100000.00 THEN 'High' 
+       WHEN salary_year_avg < 100000.00 AND salary_year_avg > 80000.00 THEN 'Standard' 
+       WHEN salary_year_avg < 80000.00 THEN 'low' 
+       ELSE 'nothing' 
+    END AS salary_bucket 
+ FROM job_postings_fact 
+ WHERE job_title_short = 'Data Analyst' AND salary_year_avg > 1 
+ ORDER BY salary_year_avg DESC;
+
+
+Q2. Write a query to display total Remote, Onsite and Total job at Australia, Aslo add only  to data analyst
+SELECT
+  COUNT(job_id) AS num_of_jobs
+  CASE
+    WHEN job_location = 'Anywhere' THEN 'Remote'
+    WHEN job_location = 'Australia' THEN 'Local'
+    ELSE 'On Site'
+  END AS location_type
+FROM job_postings_fact
+WHERE job_title_short = 'Data Analyst'
+GROUP BY location_type;
