@@ -48,3 +48,7 @@ NUMERIC = (precision, scale) used for decimal number
 TEXT = unlimited text
 TIMESTAMP WITH TIME ZONE
 
+Working with Date Time Function
+::DATE  =  converts datatype to Date
+AT TIME ZONE = It comverts timestamps between different time zones
+EXTRACT = to extract month, year, day from date
