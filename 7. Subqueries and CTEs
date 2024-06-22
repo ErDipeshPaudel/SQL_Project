@@ -107,4 +107,26 @@ FROM company_dim
 LEFT JOIN company_job_count ON company_job_count.company_id=company_dim.company_id
 ORDER BY total_jobs DESC;
 
-Q3. 
+Q3. Using CTEs, count total remote jobs for each skills. Display the top 5 skills by their demand in remote job
+Include skill_id, name and count of postings requireing the skill
+Hint: job_posting_fact has (job_id, job_work_from_home) 
+      skills_job_dim has (job_id, skill_id)
+      skills_dim has (skill_id, skills)
+
+Ans:
+First we build CTE that have number of job postings per skills for that we have to join job_postings_fact and skills_job_dim table
+Once we have above result we have to join it with skills_dim table because it has skills name in it
+Since we only need value that exists we will use INNER JOIN 
+
+
+
+
+
+
+
+
+
+
+
+
+
