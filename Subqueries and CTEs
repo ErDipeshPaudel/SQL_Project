@@ -1,0 +1,110 @@
+Subqueries and CTEs (Common Table Expressions) are used to execute some queries before main query is executed.
+They return temporary results sets which is used my main query for calculation.
+
+--Display which country has maximum jobs postings using job_country and total number of jobs
+SELECT
+    job_country,
+    COUNT(*) AS jobs_number
+FROM job_postings_fact
+WHERE job_title_short = 'Data Analyst'
+GROUP BY job_country
+ORDER BY jobs_number DESC;
+
+**************************************************  Subqueries **********************************************************
+Subqueires are nested inside larger queries in (SELECT, FROM, WHERE, HAVING and others)
+
+Q1. Using subqueries, return company which does no require job_no_degree_mention, display company_name from
+    company_dim table which is a realtional table of job_posting_facts by company_id(foreign key). So display
+    only those ocmpany name whose job postingds doesnt't require job_no_degree.
+ANS:
+SELECT name AS company_name
+FROM company_dim
+WHERE company_id IN (
+    SELECT job_postings_fact.company_id
+    FROM job_postings_fact
+    WHERE job_no_degree_mention = TRUE
+)
+
+Q2. Using subqueires display company_name who doesnt require job_no_degree required from company_dim table which
+    is relational table of job_psotings_fact.
+Ans:
+SELECT name AS company_name
+FROM company_dim
+WHERE (SELECT company_id
+       FROM job_postings_fact
+       WHERE job_no_degree = True
+      )
+
+
+Q3. Using subqueries Identify top 5 most frequently mentioned skills in job postings. Use subqueries to find the skill
+    ID with the highest counts in skills_job_dim and then join with skills_dim table to get the skills name.
+ANS:
+SELECT skills_dim.skill_id, skills
+FROM skills_dim
+INNER JOIN(
+    SELECT skills_job_dim.skill_id
+    FROM skills_job_dim
+    GROUP BY skill_id
+    ORDER BY COUNT(skill_id) DESC
+    LIMIT 5
+) top_five_skills ON top_five_skills.skill_id = skills_dim.skill_id;
+
+Q4. Using subqueries, Determaine the size cateegrory (Samll, Medium, Large) for each company by first identifying the
+    number of job postings they have. Use a subquery  to calculate the total job postings per company. A company is
+    considered "small" if it has less than 10 job postings, 'medium" if 10 to 50 job postings, "large" if more than 50
+    job postings. Implement a subquery to aggregate job counts per company before classifying them based on size.
+Ans.
+SELECT 
+    company_id,
+    company_job_count,
+    CASE
+        WHEN company_job_count < 10 THEN 'Small'
+        WHEN company_job_count > 10 AND company_job_count < 50 THEN 'Medium'
+        WHEN company_job_count > 50 THEN 'Large'
+        ELSE 'No Given'
+    END AS company_category
+FROM (
+    SELECT
+        company_id,
+        COUNT(company_id) AS company_job_count
+    FROM
+        job_postings_fact
+    GROUP BY company_id
+) AS job_counts
+ORDER BY company_id;
+
+
+**************************************************  CTEs **********************************************************
+CTEs is defined using (WITH) then are used within (SELECT, INSERT, UPDATE, DELETE) 
+
+Q1. CTEs are started using (WITH) used with (SELECT, INSERT, UPDATE, DELETE)
+--Specially for Complex queries
+WITH january_jobs AS (
+    SELECT *
+    FROM job_postings_fact
+    WHERE EXTRACT(MONTH FROM job_posted_date) = 1
+)
+SELECT * FROM job_postings_fact
+LIMIT 20;
+
+Q2. Using CTEs display company with most job positngs displaying company_id, company_name and total_jobs
+Hint: You use job_postings_fact table  to count total number of job a company has posted using company_id
+      Then  join using company_id to company_dim table and get company name
+Ans.
+WITH company_job_count AS(
+    SELECT 
+        company_id,
+        COUNT(*) AS total_jobs
+    FROM job_postings_fact
+    GROUP BY company_id
+)
+
+SELECT 
+    company_dim.company_id,
+    company_dim.name AS company_name,
+    company_job_count.total_jobs
+FROM company_dim
+LEFT JOIN company_job_count ON company_job_count.company_id=company_dim.company_id
+ORDER BY total_jobs DESC;
+
+Q3. 
